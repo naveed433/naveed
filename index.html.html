@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveed Khan - Full Stack Developer & UI/UX Designer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background-gradient"></div>
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress"></div>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <span class="logo-text">Naveed Khan</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <span class="logo-text">Naveed Khan</span>
+            </div>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <!-- Auth Section -->
+            <div class="auth-section" id="authSection">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                    <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+                </div>
+                
+                <!-- Login Form -->
+                <form class="auth-form active" id="sidebarLoginForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                    <div id="sidebarLoginMessage"></div>
+                </form>
+                
+                <!-- Signup Form -->
+                <form class="auth-form" id="sidebarSignupForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password (min 6 chars)" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Sign Up</button>
+                    <div id="sidebarSignupMessage"></div>
+                </form>
+            </div>
+            
+            <!-- User Profile Section (shown when logged in) -->
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <h4 id="userName">User Name</h4>
+                        <p id="userEmail">user@email.com</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="sidebar-nav">
+                <a href="#home" class="sidebar-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#skills" class="sidebar-link">
+                    <i class="fas fa-code"></i>
+                    <span>Skills</span>
+                </a>
+                <a href="#projects" class="sidebar-link">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projects</span>
+                </a>
+                <a href="#services" class="sidebar-link">
+                    <i class="fas fa-cogs"></i>
+                    <span>Services</span>
+                </a>
+                <a href="#testimonials" class="sidebar-link">
+                    <i class="fas fa-comments"></i>
+                    <span>Testimonials</span>
+                </a>
+                <a href="#about" class="sidebar-link">
+                    <i class="fas fa-user-tie"></i>
+                    <span>About</span>
+                </a>
+                <a href="#blog" class="sidebar-link">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                </a>
+                <a href="#contact" class="sidebar-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="name">
+                        <span class="naveed">Naveed</span> <span class="khan">Khan</span>
+                    </span>
+                    <span class="title">I'm a</span>
+                    <span class="skills-loop" id="skillsLoop">
+                        <span class="skill-item">Full Stack Developer</span>
+                        <span class="skill-item">UI/UX Designer</span>
+                        <span class="skill-item">Mobile App Developer</span>
+                    </span>
+                </h1>
+                <p class="hero-description">
+                    Crafting digital experiences with cutting-edge technology and innovative design
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="#skills" class="btn btn-secondary">View Skills</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hexagon-container">
+                    <div class="hexagon">
+                        <div class="hexagon-inner">
+                            <img src="Naveed Khan.jPEG.png" alt="Naveed Khan" class="profile-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="Frontend">
+                    <div class="skill-card-front">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Frontend Development</h3>
+                        <p>React, Vue.js, Angular, HTML5, CSS3, JavaScript</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="95"></div>
+                        </div>
+                        <div class="flip-hint">Click to learn more</div>
+                    </div>
+                    <div class="skill-card-back">
+                        <h4>Frontend Expertise</h4>
+                        <p>Specialized in modern frontend frameworks and technologies, creating responsive and interactive user interfaces that deliver exceptional user experiences.</p>
+                        <div class="tech-list">
+                            <span class="tech-item">React</span>
+                            <span class="tech-item">Vue.js</span>
+                            <span class="tech-item">Angular</span>
+                            <span class="tech-item">TypeScript</span>
+                            <span class="tech-item">Sass</span>
+                            <span class="tech-item">Webpack</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-card" data-skill="Backend">
+                    <div class="skill-card-front">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>Backend Development</h3>
+                        <p>Node.js, Python, PHP, Java, Databases, APIs</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="90"></div>
+                        </div>
+                        <div class="flip-hint">Click to learn more</div>
+                    </div>
+                    <div class="skill-card-back">
+                        <h4>Backend Architecture</h4>
+                        <p>Building robust server-side applications with scalable architectures, efficient databases, and secure API integrations.</p>
+                        <div class="tech-list">
+                            <span class="tech-item">Node.js</span>
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">Express.js</span>
+                            <span class="tech-item">MongoDB</span>
+                            <span class="tech-item">PostgreSQL</span>
+                            <span class="tech-item">Redis</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-card" data-skill="UI/UX">
+                    <div class="skill-card-front">
+                        <div class="skill-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>UI/UX Design</h3>
+                        <p>Figma, Adobe XD, Sketch, Prototyping, User Research</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="88"></div>
+                        </div>
+                        <div class="flip-hint">Click to learn more</div>
+                    </div>
+                    <div class="skill-card-back">
+                        <h4>Design Excellence</h4>
+                        <p>Creating intuitive and beautiful user experiences through user-centered design principles and modern design tools.</p>
+                        <div class="tech-list">
+                            <span class="tech-item">Figma</span>
+                            <span class="tech-item">Adobe XD</span>
+                            <span class="tech-item">Sketch</span>
+                            <span class="tech-item">InVision</span>
+                            <span class="tech-item">Principle</span>
+                            <span class="tech-item">User Testing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-card" data-skill="Mobile">
+                    <div class="skill-card-front">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Development</h3>
+                        <p>React Native, Flutter, iOS, Android, Cross-platform</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="85"></div>
+                        </div>
+                        <div class="flip-hint">Click to learn more</div>
+                    </div>
+                    <div class="skill-card-back">
+                        <h4>Mobile Excellence</h4>
+                        <p>Developing high-performance mobile applications for iOS and Android platforms with cross-platform solutions that deliver native-like experiences.</p>
+                        <div class="tech-list">
+                            <span class="tech-item">React Native</span>
+                            <span class="tech-item">Flutter</span>
+                            <span class="tech-item">iOS</span>
+                            <span class="tech-item">Android</span>
+                            <span class="tech-item">Firebase</span>
+                            <span class="tech-item">App Store</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-card" data-skill="DevOps">
+                    <div class="skill-card-front">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>DevOps & Cloud</h3>
+                        <p>AWS, Docker, CI/CD, Git, Linux, Server Management</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="80"></div>
+                        </div>
+                        <div class="flip-hint">Click to learn more</div>
+                    </div>
+                    <div class="skill-card-back">
+                        <h4>DevOps & Cloud Infrastructure</h4>
+                        <p>Setting up scalable cloud infrastructure, implementing CI/CD pipelines, and ensuring reliable deployment and monitoring of applications.</p>
+                        <div class="tech-list">
+                            <span class="tech-item">AWS</span>
+                            <span class="tech-item">Docker</span>
+                            <span class="tech-item">Kubernetes</span>
+                            <span class="tech-item">Jenkins</span>
+                            <span class="tech-item">Git</span>
+                            <span class="tech-item">Linux</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-card" data-skill="AI/ML">
+                    <div class="skill-card-front">
+                        <div class="skill-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI & Machine Learning</h3>
+                        <p>Python, TensorFlow, Data Analysis, Neural Networks</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="75"></div>
+                        </div>
+                        <div class="flip-hint">Click to learn more</div>
+                    </div>
+                    <div class="skill-card-back">
+                        <h4>AI & Machine Learning</h4>
+                        <p>Developing intelligent applications using machine learning algorithms, data analysis, and artificial intelligence to solve complex problems.</p>
+                        <div class="tech-list">
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">TensorFlow</span>
+                            <span class="tech-item">PyTorch</span>
+                            <span class="tech-item">Scikit-learn</span>
+                            <span class="tech-item">Pandas</span>
+                            <span class="tech-item">NumPy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, inventory management, and responsive design. The platform handles thousands of products with real-time inventory updates and secure payment gateways.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">View Live</a>
+                            <a href="#" class="btn btn-secondary">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Task Management App</h3>
+                        <p>A cross-platform mobile application for task and project management. Built with React Native, it includes features like real-time collaboration, file sharing, progress tracking, and push notifications. The app syncs across all devices and supports offline functionality.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">Push Notifications</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">View Live</a>
+                            <a href="#" class="btn btn-secondary">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Analytics Dashboard</h3>
+                        <p>A comprehensive analytics dashboard for business intelligence. Features real-time data visualization, custom reports, user management, and API integrations. Built with Vue.js and D3.js for interactive charts and graphs, with a Python backend for data processing.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">View Live</a>
+                            <a href="#" class="btn btn-secondary">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Social Media Platform</h3>
+                        <p>A social networking platform with features like user profiles, posts, comments, messaging, and real-time notifications. Built with Angular and Socket.io for real-time communication, with a scalable architecture supporting millions of users.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">View Live</a>
+                            <a href="#" class="btn btn-secondary">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Services I Offer</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Full-stack web applications with modern frameworks and technologies. From simple landing pages to complex enterprise solutions, I create scalable, secure, and high-performance web applications that drive business growth.</p>
+                    <ul class="service-features">
+                        <li>Responsive Design</li>
+                        <li>SEO Optimization</li>
+                        <li>Performance Optimization</li>
+                        <li>Security Implementation</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Quote</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile App Development</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android. I develop apps that provide exceptional user experiences with smooth performance, intuitive interfaces, and robust functionality.</p>
+                    <ul class="service-features">
+                        <li>iOS & Android Development</li>
+                        <li>Cross-platform Solutions</li>
+                        <li>App Store Optimization</li>
+                        <li>Maintenance & Updates</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Quote</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered design solutions that create engaging and intuitive digital experiences. I focus on understanding user needs and creating designs that are both beautiful and functional.</p>
+                    <ul class="service-features">
+                        <li>User Research</li>
+                        <li>Wireframing & Prototyping</li>
+                        <li>Visual Design</li>
+                        <li>Usability Testing</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Quote</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>DevOps & Cloud</h3>
+                    <p>Cloud infrastructure setup, deployment automation, and DevOps practices to ensure your applications run smoothly and scale efficiently. I help optimize your development and deployment processes.</p>
+                    <ul class="service-features">
+                        <li>Cloud Migration</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Monitoring & Logging</li>
+                        <li>Security & Compliance</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What People Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Naveed is an exceptional developer who consistently delivers high-quality solutions. His attention to detail and innovative approach make him stand out."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Talha Ali</h4>
+                                    <span>Senior Product Manager</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Working with Naveed was a game-changer for our project. His technical expertise and creative problem-solving skills are unmatched."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Hammad Afridi</h4>
+                                    <span>Tech Lead</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Naveed's UI/UX designs are not just beautiful but highly functional. He understands user needs and creates intuitive experiences."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Imad Khan</h4>
+                                    <span>UX Director</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"His mobile app development skills are top-notch. Naveed delivered our app on time with excellent performance and user experience."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Arshid Khan</h4>
+                                    <span>Startup Founder</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>"Naveed is a true full-stack developer who can handle any challenge. His code is clean, efficient, and maintainable."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Ali Khan</h4>
+                                    <span>Software Engineer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About Me</h2>
+                    <p>I'm Naveed Khan, a passionate and innovative Full Stack Developer with over 5 years of experience in creating cutting-edge digital solutions. My journey in technology began with a curiosity to understand how things work, which evolved into a passion for building applications that make a difference.</p>
+                    <p>I specialize in modern web technologies, mobile app development, and user experience design. My approach combines technical expertise with creative problem-solving, ensuring that every project I work on is not only functional but also delivers an exceptional user experience.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Client Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Me</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Innovation First</h3>
+                    <p>I stay ahead of technology trends and implement cutting-edge solutions that give your business a competitive edge.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Quality Assurance</h3>
+                    <p>Every project undergoes rigorous testing and quality checks to ensure flawless performance and user experience.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Timely Delivery</h3>
+                    <p>I value your time and always deliver projects on schedule without compromising on quality or functionality.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>I provide ongoing support and maintenance to ensure your applications run smoothly and efficiently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2 class="section-title">Latest Blog Posts</h2>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 15, 2024</span>
+                            <span class="blog-category">Web Development</span>
+                        </div>
+                        <h3>The Future of React Development</h3>
+                        <p>Exploring the latest features in React 18 and how they're revolutionizing the way we build user interfaces. From concurrent features to automatic batching, discover what's new and how to leverage these improvements in your projects.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 10, 2024</span>
+                            <span class="blog-category">Mobile Development</span>
+                        </div>
+                        <h3>Cross-Platform Development with React Native</h3>
+                        <p>A comprehensive guide to building high-performance mobile applications using React Native. Learn about best practices, performance optimization, and how to create native-like experiences across iOS and Android platforms.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 5, 2024</span>
+                            <span class="blog-category">UI/UX Design</span>
+                        </div>
+                        <h3>Design Systems: Building Scalable UI Components</h3>
+                        <p>How to create and maintain a comprehensive design system that ensures consistency across your applications. Learn about component architecture, design tokens, and how to implement a system that scales with your team and projects.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">February 28, 2024</span>
+                            <span class="blog-category">DevOps</span>
+                        </div>
+                        <h3>Modern DevOps Practices for Web Applications</h3>
+                        <p>Implementing CI/CD pipelines, containerization, and cloud deployment strategies for modern web applications. Discover how to automate your development workflow and ensure reliable, scalable deployments.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Mardan KPK, Pakistan</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>bilalnaveed676@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+92 313 5957242</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Available</h4>
+                            <p>24/7 for urgent projects</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Naveed Khan</span>
+                    <p>Full Stack Developer & UI/UX Designer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#services">Services</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#about">About</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/share/16oxUwdXeN/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/malik_naveed_khan_5?igsh=MXI1a3F2ZmRhcjFzMg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/naveed-khan-169032330?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Naveed Khan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
